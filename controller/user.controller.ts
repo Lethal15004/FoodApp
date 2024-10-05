@@ -5,5 +5,15 @@ export const login= async (req:Request,res:Response)=>{
     const users=await NguoiDung.findAll({
         raw: true
     });
-    res.json(users);
+    if(users.length > 0){
+        res.json({
+            code:200,
+            message:'Login success',
+        })
+    }else{
+        res.json({
+            code:401,
+            message:'Invalid username or password',
+        })
+    }
 }
